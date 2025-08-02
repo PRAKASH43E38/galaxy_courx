@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Registration</title>
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background:url("/jdgh.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .overlay {
+      background-color: rgba(67, 67, 67, 0.232);
+      min-height: 100vh;
+      padding: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1000px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      overflow: hidden;
+      flex-wrap: wrap;
+    }
+
+    .left, .right {
+      padding: 40px;
+      flex: 1 1 400px;
+    }
+
+    .left {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .left h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .left h1::before {
+      content: "🎓";
+      margin-right: 10px;
+      font-size: 36px;
+    }
+
+    .left p {
+      margin-bottom: 30px;
+      line-height: 1.5;
+      color: #ccc;
+    }
+
+    .left button {
+      margin-right: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .left .btn-green {
+      background-color: #00e676;
+      color: #000;
+    }
+
+    .left .btn-pink {
+      background-color: #ff4081;
+      color: #fff;
+    }
+
+    .right h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.718);
+      color: #fffefe;
+      outline: none;
+    }
+
+    .form-group input::placeholder {
+      color: #ccc;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group input {
+      margin-right: 10px;
+    }
+
+    .checkbox-group label {
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: #00e676;
+      font-weight: bold;
+      cursor: pointer;
+      color: #000;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+    }
+</style>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <div class="left">
+        <h1>GALAXY COURSE PLATFORM</h1>
+        <p>
+            Welcome to a next-generation learning hub built for aspiring tech leaders and curious minds. Our platform offers cutting-edge courses in Web Development, Artificial Intelligence, Generative AI, Data Analytics, Cyber Security, Blockchain, and more — designed by industry experts to equip you with real-world skills.
+            
+            Whether you're a beginner or looking to upskill, we combine interactive content, project-based learning, and hands-on mentorship to help you grow faster and smarter.
+
+            💡 Learn. Build. Thrive. Your future in tech starts here.
+        </p>
+        <div class="checkbox-group">
+            <label for="terms"><a href="admin.html" style="color:#00e676;">View Dashboard</a></label>
+        </div>
+      </div>
+      <div class="right">
+        <h2>REGISTER HERE</h2>
+        <form id="registrationForm">
+  <div class="form-group">
+    <input type="text" placeholder="Enter Full Name" required />
+  </div>
+  <div class="form-group">
+    <input type="number" placeholder="Age" min="10" max="100" required />
+  </div>
+  <div class="form-group">
+  <select required>
+    <option value="">Select Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+  </select>
+</div>
+  <div class="form-group">
+    <input type="email" placeholder="Email" required />
+  </div>
+  <div class="form-group">
+    <input type="password" placeholder="Password" required />
+  </div>
+  <div class="form-group">
+    <input type="number" placeholder="Phone Number" required />
+  </div>
+  <div class="form-group">
+    <select required>
+      <option value="">Course Type*</option>
+      <option value="web">Web Development</option>
+      <option value="ai">AI & ML</option>
+      <option value="genai">Generative AI</option>
+      <option value="data">Data Analytics</option>
+      <option value="blockchain">Blockchain</option>
+      <option value="cyber">Cyber Security</option>
+    </select>
+  </div>
+  <script>
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Registration successful!');
+      this.reset();
+    });
+
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // Get values from form inputs
+  const fullName = document.querySelector('input[placeholder="Enter Full Name"]').value;
+  const age = document.querySelector('input[placeholder="Age"]').value;
+  const gender = document.querySelector('select:nth-of-type(1)').value;
+  const email = document.querySelector('input[placeholder="Email"]').value;
+  const password = document.querySelector('input[placeholder="Password"]').value;
+  const phoneNumber = document.querySelector('input[placeholder="Phone Number"]').value;
+  const courseType = document.querySelector('select:nth-of-type(2)').value;
+
+  // Create an object with the registration data
+  const registrationData = {
+    fullName,
+    age,
+    gender,
+    email,
+    password,
+    phoneNumber,
+    courseType
+  };
+
+  // Retrieve existing registrations or initialize an empty array
+  let registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+
+  // Add the new registration to the array
+  registrations.push(registrationData);
+
+  // Save the updated array back to localStorage
+  localStorage.setItem('registrations', JSON.stringify(registrations));
+
+  alert('Registration successful!');
+  this.reset();
+});
+
+  </script>
+  <button type="submit" class="submit-btn">Register</button>
+</form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

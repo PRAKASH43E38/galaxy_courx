@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background:url("/jdgh.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.385);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #00ae5a;
+      margin-bottom: 20px;
+      font-size: 2.5em;
+      text-align: center;
+    }
+
+    p#status-message {
+      font-size: 1.2em;
+      color: #c4c3c3;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 15px;
+      border-bottom: 1px solid #e0e0e0;
+      word-wrap: break-word; /* Prevents overflow */
+    }
+
+    th {
+      background-color: #00ae5a;
+      color: #fff;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .back-link {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .back-link:hover {
+      background-color: #555;
+    }
+    .overlay {
+      background-color: rgba(67, 67, 67, 0.232);
+      min-height: 100vh;
+      padding: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+        <h1>Admin Dashboard</h1>
+        <p id="status-message">Loading registrations...</p>
+        <a href="index.html" class="back-link">Back to Home</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const registrations = JSON.parse(localStorage.getItem('registrations'));
+      const container = document.querySelector('.container');
+      const statusMessage = document.getElementById('status-message');
+      const backLink = document.querySelector('.back-link');
+
+      if (registrations && registrations.length > 0) {
+        statusMessage.style.display = 'none';
+
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        const tbody = document.createElement('tbody');
+
+        const headerRow = document.createElement('tr');
+        const headers = ['Full Name', 'Age', 'Gender', 'Email', 'Phone Number', 'Course Type'];
+        
+        headers.forEach(headerText => {
+          const th = document.createElement('th');
+          th.textContent = headerText;
+          headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        registrations.forEach(data => {
+          const row = document.createElement('tr');
+          const cellData = [data.fullName, data.age, data.gender, data.email, data.phoneNumber, data.courseType];
+          
+          cellData.forEach(cellText => {
+            const td = document.createElement('td');
+            td.textContent = cellText;
+            row.appendChild(td);
+          });
+          tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+
+        container.insertBefore(table, backLink);
+      } else {
+        statusMessage.textContent = 'No registrations found yet.';
+      }
+    });
+  </script>
+</body>
+</html>
