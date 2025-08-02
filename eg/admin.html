@@ -53,6 +53,7 @@
     }
 
     table {
+      background-color: rgba(0, 0, 0, 0.5);
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
@@ -62,29 +63,28 @@
     th, td {
       text-align: left;
       padding: 15px;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid #5b5b5b;
       word-wrap: break-word; /* Prevents overflow */
     }
 
     th {
-      background-color: #00ae5a;
-      color: #fff;
+      color: #00ae5a;
       font-weight: 600;
       text-transform: uppercase;
     }
 
     tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background-color: #ac151500;
     }
 
     tr:hover {
-      background-color: #f1f1f1;
+      background-color: #000000a5;
     }
 
     .back-link {
       margin-top: 30px;
       padding: 10px 20px;
-      background-color: #333;
+      background-color: #ca1515;
       color: #fff;
       text-decoration: none;
       border-radius: 5px;
@@ -93,10 +93,10 @@
     }
 
     .back-link:hover {
-      background-color: #555;
+      background-color: #000000;
     }
     .overlay {
-      background-color: rgba(67, 67, 67, 0.232);
+      background-color: rgba(180, 80, 80, 0.232);
       min-height: 100vh;
       padding: 50px;
       display: flex;
@@ -106,11 +106,49 @@
   </style>
 </head>
 <body>
-  <div class="container">
-        <h1>Admin Dashboard</h1>
-        <p id="status-message">Loading registrations...</p>
-        <a href="index.html" class="back-link">Back to Home</a>
-  </div>
+  <label for="">STUDENTS LIST</label>
+  <style>
+    label{
+      font-family: arial;
+      font-size: 30px;
+    }
+  </style>
+  <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Course Type</th>
+                </tr>
+            </thead>
+            <tbody id="registrationTableBody">
+                <!-- Table rows will be inserted here by JavaScript -->
+            </tbody>
+        </table><br>
+        
+        
+    </div>
+    <a href="index.html">Back to Home</a>
+    <style>
+          a{
+            padding: 5px 0px;
+            color: #00ae5a;
+            display: flex;
+            text-align: center;
+            font-size: 15px;
+            justify-content: center;
+            width: 110px;
+            height: 35px;
+            background-color: #00000074;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #00ce6a74;
+          }
+        </style>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -155,6 +193,90 @@
         statusMessage.textContent = 'No registrations found yet.';
       }
     });
+    document.addEventListener('DOMContentLoaded', function() {
+            // Sample data for demonstration. In a real application, this would come from localStorage or an API.
+            const sampleRegistrations = [
+                {
+                    name: "Parker Z",
+                    age: 24,
+                    gender: "Male",
+                    email: "alice.s@example.com",
+                    phoneNumber: "123-456-7890",
+                    courseType: "Web Development"
+                },
+                {
+                    name: "Aadhi Y",
+                    age: 30,
+                    gender: "Male",
+                    email: "bob.j@example.com",
+                    phoneNumber: "098-765-4321",
+                    courseType: "AI & ML"
+                },
+                {
+                    name: "Sai Charan U",
+                    age: 22,
+                    gender: "Other",
+                    email: "charlie.b@example.com",
+                    phoneNumber: "111-222-3333",
+                    courseType: "Generative AI"
+                },
+                {
+                    name: "Priyanka S",
+                    age: 28,
+                    gender: "Female",
+                    email: "riyankap@example.com",
+                    phoneNumber: "444-555-6666",
+                    courseType: "Data Analytics"
+                },
+                {
+                    name: "Brand G",
+                    age: 35,
+                    gender: "Male",
+                    email: "ethan.h@example.com",
+                    phoneNumber: "777-888-9999",
+                    courseType: "Cyber Security"
+                },
+                {
+                    name: "Ronaldo C",
+                    age: 26,
+                    gender: "Male",
+                    email: "fiona.g@example.com",
+                    phoneNumber: "101-202-3030",
+                    courseType: "Blockchain"
+                }
+            ];
+
+            const tableBody = document.getElementById('registrationTableBody');
+
+            // Function to populate the table
+            function populateTable(registrations) {
+                tableBody.innerHTML = ''; // Clear existing rows
+                if (registrations && registrations.length > 0) {
+                    registrations.forEach(reg => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${reg.name}</td>
+                            <td>${reg.age}</td>
+                            <td>${reg.gender}</td>
+                            <td>${reg.email}</td>
+                            <td>${reg.phoneNumber}</td>
+                            <td>${reg.courseType}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    const noDataRow = document.createElement('tr');
+                    noDataRow.innerHTML = `<td colspan="6" style="text-align: center; padding: 20px; color: #aaa;">No registrations found.</td>`;
+                    tableBody.appendChild(noDataRow);
+                }
+            }
+
+            // You can replace sampleRegistrations with data from localStorage if needed:
+            // const storedRegistrations = JSON.parse(localStorage.getItem('registrations'));
+            // populateTable(storedRegistrations || sampleRegistrations); // Use stored data, fallback to sample
+
+            populateTable(sampleRegistrations); // Using sample data for this example
+        });
   </script>
 </body>
 </html>
